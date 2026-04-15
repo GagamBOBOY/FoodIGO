@@ -436,6 +436,7 @@ img{
  background-color: var(--white-color);
  z-index: var(--z-fixed);
  justify-content: center;
+ transition: var(--tran-0-3);
  
 }
 .scrollUpBtn-active{
