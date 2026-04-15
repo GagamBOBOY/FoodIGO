@@ -1,4 +1,17 @@
 // Swiper js
+var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      // grabCursor: true}
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
 
 // Nav open close
 
@@ -10,10 +23,8 @@ window.addEventListener("scroll", () => {
  if(scrollY > 5){
     document.querySelector("header").classList.add("header-active");
  }else{
- document.querySelector("header").classList.remove("header-active");
+    document.querySelector("header").classList.remove("header-active");
  }
- console.log
-})
 
 // Scroll up button
   const scrollUpBtn = document.querySelector('.scrollUp-btn');
@@ -24,9 +35,8 @@ window.addEventListener("scroll", () => {
     scrollUpBtn.classList.remove("scrollUpBtn-active");
   }
   
-  
 // Nav link indicator
- 
+})
   
 // Scroll Reveal Animation
   
