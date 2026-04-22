@@ -118,7 +118,8 @@ img{
   cursor: pointer;
 }
 .button:hover{
-  background-color: var(--primary-color-hover) ;
+  background-color: var(--primary-color-hover);
+  transform: translateY(-3px);
 }
 
 /* Header */
@@ -284,21 +285,35 @@ img{
   margin: 0;
 }
 
+/* Wrapper to protect cards from arrows */
+.recipe-wrapper {
+  width: 100%;
+  max-width: 900px;   /* keeps it centered */
+  padding: 0 6rem;    /* 🔥 space from arrows */
+  margin: 0 auto;
+}
+
 .recipe-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(240px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+
+  width: 100%;
 }
 
 .recipe-card {
   background-color: #fff;
-  border-radius: 1.4rem;
-  padding: 1.8rem;
+  border-radius: 1.2rem;
+  padding: 1.5rem;
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
   transition: transform var(--tran-0-3), box-shadow var(--tran-0-3), border-color var(--tran-0-3);
   border: 1px solid transparent;
   cursor: pointer;
   overflow: hidden;
+}
+
+.recipe-card h3 {
+  font-size: 1.6rem;
 }
 
 .recipe-card:hover {
