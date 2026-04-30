@@ -13,6 +13,10 @@
     <!-- Scroll Reveal -->
     <link rel="stylesheet" href="">
 
+    <!-- Login attributes -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -25,23 +29,24 @@
 <!-- Header -->
     <header class="header">
         <nav class="nav container flex">
-                <a href="" class="logo content flex">
+                <a href="#home" class="logo content flex">
                         <i class='bx bx-food-menu logo-icon'></i>
                         <span class="logo-text">FoodiGO</span>
                 </a>
                         <div class="menu-content">
                                 <ul class="menu-list flex">
-                                        <li><a href="#home" class="nav-link active-navlink">Home</a></li>
-                                        <li><a href="#recipes" class="nav-link">Recipes</a></li>
-                                        <li><a href="#favorites" class="nav-link">Favorites</a></li>
-                                        <li><a href="#about" class="nav-link">About</a></li>
+                                        <li><a href="#" data-page="home" class="nav-link active-navlink">Home</a></li>
+                                        <li><a href="#" data-page="recipes" class="nav-link">Recipes</a></li>
+                                        <li><a href="#" data-page="favorites" class="nav-link">Favorites</a></li>
+                                        <li><a href="#" data-page="about" class="nav-link">About</a></li>
                                 </ul>
                         </div>        
 
-                        <div class="sign-up flex">
-                                <i class='bx bxs-user user-icon'></i>
-                                <span class="sign-up"><a href="#" class="btn btn-first">Sign In</a></span>
-                               
+                        <div class="sign-up">
+                                <a href="#" data-page="login" class="btn btn-first">
+                                    <i class='bx bxs-user user-icon'></i>
+                                    <span>Sign In</span>
+                                </a>
                         </div>                              
                 
         </nav>
@@ -51,7 +56,7 @@
 <!-- Main Section -->
     <main>
         <!-- Home Section -->
-        <section class="home" id="home">
+        <section class="section home" id="home">
             <div class="div home-content">
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
@@ -62,7 +67,7 @@
                                     <h1 class="homeTitle">Cook With What You Have</h1>
                                     <h4 class="homeSubtitle">FoodiGo helps you discover delicious recipes using the <br> INGREDIENTS  you already have at home.</h4>
                                 </div>
-                                <a href="#recipes" class="button">Start Finding Recipes</a>
+                                <a href="#" class="button" onclick="navigateToPage('recipes'); return false;">Start Finding Recipes</a>
                             </div>
                         </div>
                         <div class="swiper-slide">
@@ -182,13 +187,15 @@
         </section>
   
 <!-- Recipes Section -->
-        <section class="section recipes" id="recipes">
-                
+        <section class="section recipes" id="recipes" style="background-color: #fff; min-height: 50vh;">
+            <div class="recipe-content container">
+                <!-- Blank recipes section -->
+            </div>
         </section>
   
 <!-- Favorites Section -->
         <section class="section favorites" id="favorites">
-                <div class="container">
+                <div class="favorites-content container">
                         <div class="section-header">
                                 <span class="section-subtitle">Your Favorites</span>
                                 <h2 class="section-title">Saved Recipe Cards</h2>
@@ -199,62 +206,122 @@
         </section>
     
 <!-- About Section -->
-        <section class="section about" id="about">
+        <section class="section about" id="about">  
+            <div class="section-header-about">
+                    <span class="section-subtitle">Learn More</span>
+                    <h2 class="section-title">About FoodiGO</h2>
+            </div>
 
+            <div class="about-content">
+                <div class="aboutbg">
+                    <img src="images/aboutbg.png" alt="About FoodiGO">
+                </div>
+            
+                <div class="about-text">
+                    <p class="content-description">FoodiGo makes cooking easier by helping you turn the ingredients you already have at home into something delicious. Instead of guessing what to cook or letting food go to waste, you simply enter the ingredients available in your kitchen, and it quickly suggests recipes you can prepare right away. It guides you in making the most out of what you have, saving time, money, and effort.</p>
+                    <p class="content-description">Whether you have only a few items or a full set of ingredients, FoodiGo helps you discover meals you might not have thought of, making everyday cooking more simple, practical, and enjoyable.</p>
+                </div>
+            </div>
         </section>
  
-        
-<!-- Footer Section -->
-        <footer class="section footer">
-                <div class="footer-container container">
-                        <div class="footer-content">
-                                <a href="" class="logo content flex">
-                                        <i class='bx bx-food-menu logo-icon'></i>
-                                        <span class="logo-text">FoodiGO</span>
-                                </a> 
-                                
-                                <p class="content-description">FoodiGo helps you turn what you already have at home into something delicious. Just enter your ingredients, and instantly discover recipes you can make right now.</p>
-                        
-                                <div class="footer-location flex">
-                                
-                                </div>
-                        </div>
-                        
-                        <div class="footer-linkContent">
-                               <ul class="footer-links">
-                                        <h4 class="footerLinks-title">Related Links</h4>
+        <!-- Login Section -->
+        <section class="section login" id="login">
+            <div class="login-container" background="images/loginbg.jpg" class="login-bg">
+                <h1>
+                Welcome to <br>
+                <img src="#" class="logo">
+                </h1>
 
-                                        <li><a href="https://l1nq.com/ft3v0te" class="footer-link">Brewing Guides</a></li>
-                                        <li><a href="https://www.kingarthurbaking.com/learn/guides" class="footer-link">Baking Guides</a></li>
-                                        <li><a href="https://www.diffordsguide.com/cocktails" class="footer-link">Cocktail Guides</a></li>
-                               </ul>  
-                               <ul class="footer-links">
-                                        <h4 class="footerLinks-title">Support</h4>
+                <p>Discover recipes based on ingredients you already have!</p>
 
-                                        <li><a href="#" class="footer-link">About Us</a></li>
-                                        <li><a href="#" class="footer-link">FAQs</a></li>
-                                        <li><a href="#" class="footer-link">Private Policy</a></li>
-                                        <li><a href="#" class="footer-link">Help Us</a></li>
-                               </ul>  
-                               <ul class="footer-links">
-                                        <h4 class="footerLinks-title">Contact us</h4>
+                <!-- LOGIN -->
+                <div id="login-form">
+                    <form method="POST">
+                        <input type="text" name="email" placeholder="Email" required>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <button class="loginBtn" type="submit">Login</button>
+                    </form>
 
-                                        <li><i class='bx bxl-facebook'></i>FoodiGO_Eats</li>
-                                        <li><i class='bx bxl-instagram-alt' ></i> FGo_eats</li>
-                                        <li><i class='bx bxs-phone'></i> +63 918 123 4567</li>
-                                        <li><i class='bx bxs-envelope'></i>FoodiGo_eats@gmail.com</li>
-                               </ul>
-                               
-                        </div>
+                    <p id="errorMsg" style="color:red;">
+                        <?php if (isset($error)) echo $error; ?>
+                    </p>
+
+                    <p>
+                        Don't have an account?
+                        <a href="#" id="show-register">Register</a>
+                    </p>
                 </div>
-                <div class="footer-copyRight">&#169; FoodiGO.All rights reserved.2026</div>
-        </footer>
 
-<!-- Scroll Up -->
-        <a href="#home" class="scrollUp-btn flex">
-                <i class='bx bx-up-arrow-alt scrollUp-icon'></i>
+                <!-- REGISTER -->
+                <div id="register-form" style="display:none;">
+                    <form method="POST" action="register.php">
 
-        </a>
+                        <input type="text" name="username" placeholder="Username" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="password" name="password" placeholder="Password" required>
+
+                        <button class="registerBtn" type="submit">Register</button>
+                    </form>
+                    <p>
+                         Already have an account?
+                        <a href="#" id="show-login">Login</a>
+                    </p>
+                </div>
+
+
+                <div class="social-login">
+                    <p>Or login with:</p>
+                    <button><i class="fab fa-google"></i> <span>Google</span></button>
+                    <button><i class="fab fa-facebook-f"></i> <span>Facebook</span></button>
+                </div>
+            </div>
+        </section>
+ 
+<!-- Footer Section -->
+            <footer class="footer">
+                    <div class="footer-container container">
+                            <div class="footer-content">
+                                    <a href="" class="logo content flex">
+                                            <i class='bx bx-food-menu logo-icon'></i>
+                                            <span class="logo-text">FoodiGO</span>
+                                    </a> 
+                                    
+                                    <p class="content-description">FoodiGo helps you turn what you already have at home into something delicious. Just enter your ingredients, and instantly discover recipes you can make right now.</p>
+                            
+                                    <div class="footer-location flex">
+                                    
+                                    </div>
+                            </div>
+                            
+                            <div class="footer-linkContent">
+                                <ul class="footer-links">
+                                            <h4 class="footerLinks-title">Related Links</h4>
+
+                                            <li><a href="https://l1nq.com/ft3v0te" class="footer-link">Brewing Guides</a></li>
+                                            <li><a href="https://www.kingarthurbaking.com/learn/guides" class="footer-link">Baking Guides</a></li>
+                                            <li><a href="https://www.diffordsguide.com/cocktails" class="footer-link">Cocktail Guides</a></li>
+                                </ul>  
+                                <ul class="footer-links">
+                                            <h4 class="footerLinks-title">Support</h4>
+
+                                            <li><a href="#" class="footer-link">About Us</a></li>
+                                            <li><a href="#" class="footer-link">FAQs</a></li>
+                                            <li><a href="#" class="footer-link">Private Policy</a></li>
+                                            <li><a href="#" class="footer-link">Help Us</a></li>
+                                </ul>  
+                                <ul class="footer-links">
+                                            <h4 class="footerLinks-title">Contact us</h4>
+
+                                            <li><i class='bx bxl-facebook'></i>FoodiGO_Eats</li>
+                                            <li><i class='bx bxl-instagram-alt' ></i> FGo_eats</li>
+                                            <li><i class='bx bxs-phone'></i> +63 918 123 4567</li>
+                                            <li><i class='bx bxs-envelope'></i>FoodiGo_eats@gmail.com</li>
+                                </ul>
+                                
+                            </div>
+                    </div>
+                    <div class="footer-copyRight">&#169; FoodiGO.All rights reserved.2026</div>
+            </footer>
 </main>
 
 
