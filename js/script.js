@@ -20,27 +20,39 @@ var swiper = new Swiper(".mySwiper", {
 // Change header bg color
 const header = document.querySelector(".header");
 const homeSection = document.querySelector(".home");
+const loginContainer = document.querySelector(".login-container");
 
 window.addEventListener("scroll", () => {
   const scrollY = window.pageYOffset;
-  const triggerPoint = homeSection.offsetHeight - 25;
 
-  if (scrollY > 5) {
-    header.classList.add("header-active");
-  } else {
-    header.classList.remove("header-active");
-  }
+  if (homeSection) {
+    const triggerPoint = homeSection.offsetHeight - 25;
 
-  if (scrollY > triggerPoint) {
-    header.classList.add("header-dark");
-  } else {
-    header.classList.remove("header-dark");
-  }
+    if (scrollY > 5) {
+      header.classList.add("header-active");
+    } else {
+      header.classList.remove("header-active");
+    }
 
-  if (scrollY > triggerPoint) {
-    header.classList.remove("header-active");
+    if (scrollY > triggerPoint) {
+      header.classList.add("header-dark");
+    } else {
+      header.classList.remove("header-dark");
+    }
+
+    if (scrollY > triggerPoint) {
+      header.classList.remove("header-active");
+    } else {
+      header.classList.add("header-active");
+    }
+  } else if (loginContainer) {
+    const loginRect = loginContainer.getBoundingClientRect();
+    const isTouching = loginRect.top <= header.offsetHeight;
+
+    header.classList.toggle("header-light", isTouching);
+    header.classList.toggle("header-active", !isTouching && scrollY > 5);
   } else {
-    header.classList.add("header-active");
+    header.classList.toggle("header-active", scrollY > 5);
   }
 });
   
@@ -277,9 +289,136 @@ function removeFavCard(favCard, recipeName) {
   }
 }
 
+// Navigation function
+function navigateToPage(pageId) {
+  // Prevent default link behavior
+  if (event) {
+    event.preventDefault();
+  }
+  
+  const header = document.querySelector('.header');
+  
+  // Hide all sections
+  document.querySelectorAll('.section').forEach(section => {
+    section.classList.remove('active');
+  });
+  
+  // Show selected section
+  const targetSection = document.getElementById(pageId);
+  if (targetSection) {
+    targetSection.classList.add('active');
+  }
+  
+  // Update header styling based on active page
+  if (pageId === 'login') {
+    header.classList.add('header-login');
+  } else {
+    header.classList.remove('header-login');
+  }
+  
+  // Update active nav link
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.remove('active-navlink');
+    if (link.getAttribute('data-page') === pageId) {
+      link.classList.add('active-navlink');
+    }
+  });
+  
+  // Scroll to top
+  window.scrollTo(0, 0);
+}
+
+// Setup navigation links
+function setupNavigation() {
+  document.querySelectorAll('[data-page]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const pageId = this.getAttribute('data-page');
+      navigateToPage(pageId);
+    });
+  });
+}
+
 window.addEventListener('DOMContentLoaded', () => {
-  loadFavoritesComponent();
-  loadRecipesComponent();
+  setupNavigation();
+  initRecipeCards();
+
+  // Remove active from all first
+  document.querySelectorAll('.section').forEach(section => {
+    section.classList.remove('active');
+  });
+
+  // Set ONLY home active
+  document.getElementById('home').classList.add('active');
 });
 
-// Scroll Reveal Animation
+
+
+// Loginform
+    document.addEventListener("DOMContentLoaded", () => {
+
+    document.getElementById("show-register").onclick = (e) => {
+    e.preventDefault();
+    document.getElementById("login-form").style.display = "none";
+    document.getElementById("register-form").style.display = "block";
+};
+
+document.getElementById("show-login").onclick = (e) => {
+    e.preventDefault();
+    document.getElementById("register-form").style.display = "none";
+    document.getElementById("login-form").style.display = "block";
+};
+
+    document.getElementById("registerBtn").onclick = () => {
+        const username = document.getElementById("reg-username").value;
+        const email = document.getElementById("reg-email").value;
+        const password = document.getElementById("reg-password").value;
+
+        if (!username || !email || !password) {
+            document.getElementById("regErrorMsg").innerText = "Fill all fields!";
+            return;
+        }
+
+        const user = { username, email, password };
+        localStorage.setItem("user", JSON.stringify(user));
+
+        alert("Registered successfully!");
+    };
+
+    document.getElementById("loginBtn").onclick = () => {
+    const email = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const errorBox = document.getElementById("errorMsg");
+
+    // clear old message
+    errorBox.innerText = "";
+
+    if (!email || !password) {
+        errorBox.innerText = "Please fill all fields!";
+        return;
+    }
+
+    fetch("login.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === "success") {
+            window.location.href = "index.php";
+        } else if (data.status === "wrong") {
+            errorBox.innerText = "Wrong password";
+        } else if (data.status === "not_found") {
+            errorBox.innerText = "User not found";
+        } else {
+            errorBox.innerText = "Something went wrong";
+        }
+    })
+    .catch(() => {
+        errorBox.innerText = "Server error";
+    });
+};
+});
